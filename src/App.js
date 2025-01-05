@@ -7,6 +7,7 @@ import Contact from './Components/Contact';
 import 'aos/dist/aos.css';
 import AOS from 'aos';
 import './App.css'; // Importez votre fichier CSS global
+import Skills from './Components/Skills';
 
 const App = () => {
   React.useEffect(() => {
@@ -18,6 +19,7 @@ const App = () => {
       <Navbar />
       <Hero />
       <About />
+      <Skills />
       <Projects />
       <Contact />
     </div>
