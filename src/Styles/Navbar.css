@@ -26,11 +26,21 @@
   color: white !important;
   font-size: 1.2rem;
   transition: color 0.3s ease, transform 0.3s ease;
+  position: relative;
+}
+
+.nav-link i {
+  display: none;
+  margin-left: 5px;
 }
 
 .nav-link:hover {
   color: #28a745 !important; /* Couleur verte au survol */
   transform: scale(1.1);
+}
+
+.nav-link:hover i {
+  display: inline;
 }
 
 .navbar-toggler {
@@ -39,4 +49,38 @@
 
 .navbar-toggler-icon {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28255, 255, 255, 0.5%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+.navbar-toggler-icon.open {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28255, 255, 255, 0.5%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22' transform='rotate(45 15 15)'/%3E%3C/svg%3E");
+}
+
+/* Styles pour la section flottante */
+.floating-menu {
+  background-color: #FFE135; /* Couleur jaune pour la section flottante */
+  position: fixed;
+  top: 60px; /* Ajustez cette valeur en fonction de la hauteur de votre navbar */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  max-width: 400px;
+  z-index: 1000;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.floating-menu .navbar-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.floating-menu .nav-link {
+  color: black !important; /* Couleur noire pour le texte */
+  margin: 10px 0;
+}
+
+.floating-menu .nav-link:hover {
+  color: #28a745 !important; /* Couleur verte au survol */
 }
