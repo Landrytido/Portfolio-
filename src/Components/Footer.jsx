@@ -1,35 +1,36 @@
 import React from 'react';
-import { Instagram, Twitter, Youtube, Facebook, Linkedin } from 'lucide-react';
+import { FaLinkedin, FaGithub, FaEnvelope } from 'react-icons/fa';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '../Styles/Footer.css'; // Importez votre fichier CSS personnalisé
 
 const Footer = () => {
   return (
-    <footer className="py-12 bg-gray-900 border-t border-gray-800">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div>
-            <h3 className="text-xl font-bold mb-4">Kansas</h3>
-            <p className="text-gray-400">
-              Crafted with ❤️ by Azwedo & Wedoflow
-            </p>
+    <footer className="footer-section">
+      <div className="container">
+        <div className="row">
+          <div className="col-md-6">
+            <h5>Contact</h5>
+            <p>Email: <a href="mailto:example@example.com">example@example.com</a></p>
+            <p>Téléphone: <a href="tel:+1234567890">+1234567890</a></p>
           </div>
-          <div>
-            <h4 className="font-bold mb-4">PAGES</h4>
-            <div className="space-y-2">
-              <a href="#home" className="block text-gray-400 hover:text-white">Home</a>
-              <a href="#projects" className="block text-gray-400 hover:text-white">Projects</a>
-              <a href="#blogs" className="block text-gray-400 hover:text-white">Blogs</a>
-              <a href="#about" className="block text-gray-400 hover:text-white">About</a>
+          <div className="col-md-6 text-md-end">
+            <h5>Suivez-moi</h5>
+            <div className="social-links">
+              <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer">
+                <FaLinkedin className="social-icon" />
+              </a>
+              <a href="https://github.com/yourprofile" target="_blank" rel="noopener noreferrer">
+                <FaGithub className="social-icon" />
+              </a>
+              <a href="mailto:example@example.com">
+                <FaEnvelope className="social-icon" />
+              </a>
             </div>
           </div>
-          <div>
-            <h4 className="font-bold mb-4">FIND ME</h4>
-            <div className="flex space-x-4">
-              <Instagram className="w-6 h-6 text-gray-400 hover:text-white" />
-              <Twitter className="w-6 h-6 text-gray-400 hover:text-white" />
-              <Youtube className="w-6 h-6 text-gray-400 hover:text-white" />
-              <Facebook className="w-6 h-6 text-gray-400 hover:text-white" />
-              <Linkedin className="w-6 h-6 text-gray-400 hover:text-white" />
-            </div>
+        </div>
+        <div className="row mt-4">
+          <div className="col-12 text-center">
+            <p>&copy; 2023 Votre Nom. Tous droits réservés.</p>
           </div>
         </div>
       </div>

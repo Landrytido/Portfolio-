@@ -8,6 +8,7 @@ import 'aos/dist/aos.css';
 import AOS from 'aos';
 import './App.css'; // Importez votre fichier CSS global
 import Skills from './Components/Skills';
+import Footer from './Components/Footer';
 
 const App = () => {
   React.useEffect(() => {
@@ -22,6 +23,7 @@ const App = () => {
       <Skills />
       <Projects />
       <Contact />
+      <Footer />
     </div>
   );
 };

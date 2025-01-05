@@ -1,147 +1,161 @@
 /* Hero.css */
 
 .hero {
-    min-height: 100vh;
-    color: white;
-    background-color: #121212; /* Couleur de fond sombre */
+  position: relative;
+  min-height: 100vh;
+  color: white;
+  background-color: #121212; /* Couleur de fond sombre */
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100px; /* Ajustez la hauteur du dégradé selon vos besoins */
+  background: linear-gradient(to bottom, #121212, #1c1b1b);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  animation: fadeIn 2s ease-in-out;
+}
+
+.hero-title {
+  font-size: 5rem; /* Augmenter la taille de la police */
+  font-weight: bold;
+}
+
+.hero-emoji {
+  display: inline-flex;
+  width: 60px; /* Augmenter la taille de l'emoji */
+  height: 60px;
+  background-color: #FFE135; /* Couleur jaune pour l'emoji */
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  margin: 0 5px;
+  vertical-align: middle;
+}
+
+.hero-emoji span {
+  font-size: 40px; /* Augmenter la taille de l'emoji */
+}
+
+.highlight {
+  color: #28a745; /* Couleur verte */
+}
+
+.hero-subtitle {
+  font-size: 4rem; /* Augmenter la taille de la police */
+  color: #28a745; /* Couleur verte */
+  font-weight: bold;
+}
+
+.hero-text {
+  font-size: 1.5rem; /* Augmenter la taille de la police */
+}
+
+.hero-buttons {
+  margin-top: 40px; /* Ajouter plus d'espace entre les textes et les nouveaux éléments */
+}
+
+.cv-link {
+  text-decoration: none;
+}
+
+.cv-circle {
+  width: 100px;
+  height: 100px;
+  background-color: #28a745;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: pulse 2s infinite;
+}
+
+.cv-text {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
   }
-  
-  .hero-content {
-    animation: fadeIn 2s ease-in-out;
+  50% {
+    transform: scale(1.1);
   }
-  
+  100% {
+    transform: scale(1);
+  }
+}
+
+.social-links {
+  display: flex;
+  gap: 15px;
+  margin-left: auto; /* Aligner les liens sociaux à droite */
+}
+
+.social-links a {
+  color: white;
+  font-size: 2rem;
+  transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+  color: #28a745;
+}
+
+/* Media Queries pour la responsivité */
+@media (max-width: 768px) {
   .hero-title {
-    font-size: 5rem; /* Augmenter la taille de la police */
-    font-weight: bold;
+    font-size: 3rem;
   }
-  
-  .hero-emoji {
-    display: inline-flex;
-    width: 60px; /* Augmenter la taille de l'emoji */
-    height: 60px;
-    background-color: #FFE135; /* Couleur jaune pour l'emoji */
-    border-radius: 50%;
-    justify-content: center;
-    align-items: center;
-    margin: 0 5px;
-    vertical-align: middle;
-  }
-  
-  .hero-emoji span {
-    font-size: 40px; /* Augmenter la taille de l'emoji */
-  }
-  
-  .highlight {
-    color: #28a745; /* Couleur verte */
-  }
-  
+
   .hero-subtitle {
-    font-size: 4rem; /* Augmenter la taille de la police */
-    color: #28a745; /* Couleur verte */
-    font-weight: bold;
+    font-size: 2.5rem;
   }
-  
+
   .hero-text {
-    font-size: 1.5rem; /* Augmenter la taille de la police */
+    font-size: 1.2rem;
   }
-  
-  .hero-buttons {
-    margin-top: 40px; /* Ajouter plus d'espace entre les textes et les nouveaux éléments */
-  }
-  
-  .cv-link {
-    text-decoration: none;
-  }
-  
+
   .cv-circle {
-    width: 100px;
-    height: 100px;
-    background-color: #28a745;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    animation: pulse 2s infinite;
+    width: 80px;
+    height: 80px;
   }
-  
+
   .cv-text {
-    color: white;
-    font-size: 1.5rem;
-    font-weight: bold;
+    font-size: 1.2rem;
   }
-  
-  @keyframes pulse {
-    0% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.1);
-    }
-    100% {
-      transform: scale(1);
-    }
+
+  .hero-buttons {
+    align-items: center; /* Centrer les éléments sur les petits écrans */
   }
-  
+
   .social-links {
-    display: flex;
-    gap: 15px;
-    margin-left: auto; /* Aligner les liens sociaux à droite */
+    justify-content: center;
+    margin-top: 20px;
+    margin-left: 0; /* Supprimer la marge gauche sur les petits écrans */
   }
-  
+
   .social-links a {
-    color: white;
-    font-size: 2rem;
-    transition: color 0.3s ease;
+    font-size: 1.5rem;
   }
-  
-  .social-links a:hover {
-    color: #28a745;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
   }
-  
-  /* Media Queries pour la responsivité */
-  @media (max-width: 768px) {
-    .hero-title {
-      font-size: 3rem;
-    }
-  
-    .hero-subtitle {
-      font-size: 2.5rem;
-    }
-  
-    .hero-text {
-      font-size: 1.2rem;
-    }
-  
-    .cv-circle {
-      width: 80px;
-      height: 80px;
-    }
-  
-    .cv-text {
-      font-size: 1.2rem;
-    }
-  
-    .hero-buttons {
-      align-items: center; /* Centrer les éléments sur les petits écrans */
-    }
-  
-    .social-links {
-      justify-content: center;
-      margin-top: 20px;
-      margin-left: 0; /* Supprimer la marge gauche sur les petits écrans */
-    }
-  
-    .social-links a {
-      font-size: 1.5rem;
-    }
+  to {
+    opacity: 1;
   }
-  
-  /* Animation */
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
+}

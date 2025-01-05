@@ -3,12 +3,12 @@
 body, html {
   margin: 0;
   padding: 0;
-  background-color: #121212; /* Couleur de fond sombre pour tout le site */
+  background-color: #313030; /* Couleur de fond sombre pour tout le site */
   color: #ffffff; /* Couleur du texte en blanc */
 }
 
 .app {
-  background-color: #121212; /* Couleur de fond sombre pour tout le site */
+  background-color: #1c1b1b; /* Couleur de fond sombre pour tout le site */
 }
 
 .section {
@@ -16,7 +16,7 @@ body, html {
 }
 
 .section-dark {
-  background-color: #121212; /* Fond sombre pour les sections */
+  background-color: #3a3939; /* Fond sombre pour les sections */
   color: #ffffff; /* Texte en blanc */
 }
 
