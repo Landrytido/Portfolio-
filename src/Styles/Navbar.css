@@ -1,7 +1,7 @@
 /* Navbar.css */
 
 /* Importer une police personnalisée */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Pacifico&display=swap');
 
 .navbar {
   font-family: 'Roboto', sans-serif;
@@ -17,9 +17,16 @@
 }
 
 .navbar-logo {
+  font-family: 'Pacifico', cursive;
   color: #28a745; /* Couleur verte pour le logo */
-  font-weight: bold;
   font-size: 1.5rem;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.navbar-logo:hover {
+  transform: scale(1.2);
+  color: #FFE135; /* Couleur jaune au survol */
+  font-size: 1.7rem;
 }
 
 .nav-link {
