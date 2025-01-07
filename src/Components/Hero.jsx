@@ -23,7 +23,7 @@ const Hero = () => {
             Passionné par la création d'applications web modernes et réactives.
           </p>
           <div className="hero-buttons d-flex flex-column flex-md-row justify-content-between align-items-center">
-            <a href="CVStage.pdf" className="cv-link mb-3 mb-md-0" download>
+            <a href="CV.pdf" className="cv-link mb-3 mb-md-0" download>
               <div className="cv-circle">
                 <span className="cv-text">CV</span>
               </div>
@@ -34,6 +34,9 @@ const Hero = () => {
               </a>
               <a href="https://github.com/Landrytido" target="_blank" rel="noopener noreferrer">
                 <i className="fab fa-github"></i>
+              </a>
+              <a href="mailto:landrytido727@gmail.com" target="_blank" rel="noopener noreferrer">
+                <i className="fab fa-envelope"></i>
               </a>
               <a href="https://wa.me/+32465362609" target="_blank" rel="noopener noreferrer">
                 <i className="fab fa-whatsapp"></i>

@@ -4,10 +4,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 .footer-section {
+  position: relative;
   background-color: #121212;
   color: white;
   padding: 40px 0;
   font-family: 'Roboto', sans-serif;
+}
+
+.footer-section::before {
+  content: '';
+  position: absolute;
+  top: -100px; /* Ajustez cette valeur en fonction de la hauteur du dégradé */
+  left: 0;
+  width: 100%;
+  height: 100px; /* Ajustez la hauteur du dégradé selon vos besoins */
+  background: linear-gradient(to bottom, #1c1b1b, #121212);
+  z-index: 1;
 }
 
 .footer-section h5 {
@@ -27,7 +39,7 @@
 .social-links {
   display: flex;
   gap: 15px;
-  justify-content: flex-end;
+  justify-content: center;
 }
 
 .social-icon {
@@ -38,4 +50,31 @@
 
 .social-icon:hover {
   color: #28a745;
+}
+
+.btn-scroll-top {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  padding: 10px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-scroll-top:hover {
+  background-color: #218838;
+  transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+  .footer-section .col-md-4 {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .footer-section .text-md-end {
+    text-align: center;
+  }
 }

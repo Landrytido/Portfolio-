@@ -1,0 +1,147 @@
+/* Contact.css */
+
+/* Importer une police personnalisée */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+.contact-section {
+  background-color: #1c1b1b;
+  color: white;
+  padding: 100px 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+.contact-heading {
+  color: #28a745;
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-align: center;
+  animation: fadeInDown 1s ease-in-out;
+}
+
+.contact-form {
+  max-width: 100%;
+  margin: 0 auto;
+  animation: fadeInUp 1s ease-in-out;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #FFE135;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #333;
+  color: white;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.form-control::placeholder {
+  color: #aaa;
+}
+
+.form-control:focus {
+  background-color: #444;
+  color: #fff;
+  outline: none;
+}
+
+.btn-primary {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #28a745;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #218838;
+  transform: scale(1.05);
+}
+
+.contact-info {
+  text-align: center;
+  animation: fadeInUp 1s ease-in-out;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 2rem;
+}
+
+.social-icon {
+  color: #FFE135;
+  font-size: 2rem;
+  transition: color 0.3s ease;
+}
+
+.social-icon:hover {
+  color: #28a745;
+}
+
+.btn-secondary {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #FFE135;
+  color: #121212;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background-color: #FFD700;
+  transform: scale(1.05);
+}
+
+/* Animations */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Media Queries pour la responsivité */
+@media (max-width: 768px) {
+  .contact-info {
+    margin-top: 2rem;
+  }
+}
