@@ -1,34 +1,11 @@
-/* styles.css */
-.projects-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-  }
-  
-  .project-card {
-    position: relative;
-    width: 300px;
-    padding: 1rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
-    text-align: center;
-    transition: transform 0.3s ease-in-out;
-  }
-  
-  .project-card:hover {
-    transform: translateY(-10px);
-  }
-  
-  .project-image {
+.carousel-item img {
     width: 100%;
-    border-radius: 8px;
+    height: 400px; /* Vous pouvez ajuster cette hauteur selon vos besoins */
+    object-fit: cover;
   }
   
-  @media (min-width: 768px) {
-    .projects-container {
-      flex-direction: row;
-      justify-content: center;
-    }
+  .carousel-caption {
+    background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent pour le texte */
+    padding: 10px;
+    border-radius: 5px;
   }
