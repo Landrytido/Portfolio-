@@ -1,12 +1,16 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "../Styles/Projects.css";
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
 
 const Projects = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [error, setError] = useState(null);
   const [touchStart, setTouchStart] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [showModal, setShowModal] = useState(false);
+  const [selectedProject, setSelectedProject] = useState(null);
 
   const projects = [
     {
@@ -111,6 +115,16 @@ const Projects = () => {
     return result;
   };
 
+  const handleCardClick = (project) => {
+    setSelectedProject(project);
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setSelectedProject(null);
+  };
+
   if (error) {
     return (
       <div className="alert alert-danger m-4">
@@ -143,6 +157,7 @@ const Projects = () => {
               <div
                 key={project.id}
                 className={`project-card ${idx === 1 ? 'active' : 'side'}`}
+                onClick={() => handleCardClick(project)}
               >
                 <div className="project-inner card">
                   <div className="project-image-container">
@@ -157,8 +172,6 @@ const Projects = () => {
                     />
                     <div className="project-info card-img-overlay">
                       <h3 className="card-title">{project.title}</h3>
-                      <p className="card-text">{project.description}</p>
-                      <button className="btn btn-success mt-2">Voir plus</button>
                     </div>
                   </div>
                 </div>
@@ -194,6 +207,26 @@ const Projects = () => {
           </div>
         </div>
       </div>
+
+      {selectedProject && (
+        <Modal show={showModal} onHide={handleCloseModal} centered>
+          <Modal.Header closeButton>
+            <Modal.Title>{selectedProject.title}</Modal.Title>
+          </Modal.Header>
+          <Modal.Body className="text-center">
+            <img src={selectedProject.image} alt={selectedProject.title} className="img-fluid mb-3 modal-image" />
+            <p>{selectedProject.description}</p>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleCloseModal}>
+              Fermer
+            </Button>
+            <Button variant="primary" onClick={() => window.open(selectedProject.image, '_blank')}>
+              Voir plus
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      )}
     </section>
   );
 };
