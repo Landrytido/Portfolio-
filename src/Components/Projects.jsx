@@ -1,9 +1,10 @@
-import React, { useState } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
+import React, { useState, useEffect, useCallback } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import "../Styles/Projects.css";
 
 const Projects = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [error, setError] = useState(null);
 
   const projects = [
     {
@@ -38,6 +39,19 @@ const Projects = () => {
     }
   ];
 
+  const handleKeyNavigation = useCallback((e) => {
+    if (e.key === 'ArrowLeft') {
+      prevSlide();
+    } else if (e.key === 'ArrowRight') {
+      nextSlide();
+    }
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyNavigation);
+    return () => window.removeEventListener('keydown', handleKeyNavigation);
+  }, [handleKeyNavigation]);
+
   const nextSlide = () => {
     setActiveIndex((prev) => 
       prev === projects.length - 1 ? 0 : prev + 1
@@ -45,7 +59,7 @@ const Projects = () => {
   };
 
   const prevSlide = () => {
-    setActiveIndex((prev) => 
+    setActiveIndex((prev) =>
       prev === 0 ? projects.length - 1 : prev - 1
     );
   };
@@ -61,8 +75,17 @@ const Projects = () => {
     return result;
   };
 
+  if (error) {
+    return (
+      <div className="alert alert-danger m-4">
+        Une erreur est survenue : {error}
+      </div>
+    );
+  }
+
   return (
     <div className="projects-container container py-5">
+      <h2 className="text-center mb-5 projects-title">Mes Projets</h2>
       <div className="projects-carousel position-relative">
         <div className="d-flex justify-content-center align-items-center">
           {getVisibleProjects().map((project, idx) => (
@@ -70,32 +93,39 @@ const Projects = () => {
               key={project.id}
               className={`project-card ${idx === 1 ? 'active' : 'side'}`}
             >
-              <div className="project-inner">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="project-image"
-                />
-                <div className="project-info">
-                  <h3>{project.title}</h3>
-                  <p>{project.description}</p>
+              <div className="project-inner card">
+                <div className="project-image-container">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="project-image card-img-top"
+                    loading="lazy"
+                    onError={(e) => {
+                      setError("Erreur de chargement de l'image");
+                    }}
+                  />
+                  <div className="project-info card-img-overlay">
+                    <h3 className="card-title">{project.title}</h3>
+                    <p className="card-text">{project.description}</p>
+                  </div>
                 </div>
               </div>
             </div>
           ))}
         </div>
-
+        
         <button
           onClick={prevSlide}
           className="carousel-control prev"
-          aria-label="Previous"
+          aria-label="Projet précédent"
         >
           <i className="bi bi-chevron-left"></i>
         </button>
+        
         <button
           onClick={nextSlide}
           className="carousel-control next"
-          aria-label="Next"
+          aria-label="Projet suivant"
         >
           <i className="bi bi-chevron-right"></i>
         </button>
