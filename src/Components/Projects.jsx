@@ -5,6 +5,8 @@ import "../Styles/Projects.css";
 const Projects = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [error, setError] = useState(null);
+  const [touchStart, setTouchStart] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   const projects = [
     {
@@ -16,28 +18,48 @@ const Projects = () => {
     {
       id: 2,
       title: "Projet 2",
-      image: "Projects/Projects2/photo2.jpg",
+      image: "Projects/Projects2/Capture d'écran 2025-02-01 115521.png",
       description: "Description du projet 2"
     },
     {
       id: 3,
       title: "Projet 3",
-      image: "Projects/Projects3/photo3.jpg",
+      image: "Projects/Projects3/Capture d'écran 2025-02-01 121609.png",
       description: "Description du projet 3"
     },
     {
       id: 4,
       title: "Projet 4",
-      image: "Projects/Projects4/photo4.jpg",
+      image: "Projects/Projects4/Capture d'écran 2025-02-01 123754.png",
       description: "Description du projet 4"
     },
     {
       id: 5,
       title: "Projet 5",
-      image: "Projects/Projects5/photo5.jpg",
+      image: "Projects/Projects5/Capture d'écran 2025-02-01 132049.png",
       description: "Description du projet 5"
     }
   ];
+
+  const handleTouchStart = (e) => {
+    setTouchStart(e.touches[0].clientX);
+  };
+
+  const handleTouchEnd = (e) => {
+    if (!touchStart) return;
+    
+    const touchEnd = e.changedTouches[0].clientX;
+    const diff = touchStart - touchEnd;
+
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) {
+        nextSlide();
+      } else {
+        prevSlide();
+      }
+    }
+    setTouchStart(null);
+  };
 
   const handleKeyNavigation = useCallback((e) => {
     if (e.key === 'ArrowLeft') {
@@ -49,7 +71,21 @@ const Projects = () => {
 
   useEffect(() => {
     window.addEventListener('keydown', handleKeyNavigation);
-    return () => window.removeEventListener('keydown', handleKeyNavigation);
+    
+    // Auto-rotation
+    const interval = setInterval(() => {
+      nextSlide();
+    }, 5000);
+
+    // Simuler un chargement des images
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyNavigation);
+      clearInterval(interval);
+    };
   }, [handleKeyNavigation]);
 
   const nextSlide = () => {
@@ -83,56 +119,82 @@ const Projects = () => {
     );
   }
 
+  if (isLoading) {
+    return (
+      <div className="d-flex justify-content-center align-items-center min-vh-100">
+        <div className="spinner-border text-success" role="status">
+          <span className="visually-hidden">Chargement...</span>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <section id="projects" className="projects-section">
-    <div className="projects-container container py-5">
-      <h2 className="text-center mb-5 projects-title">Mes Projets</h2>
-      <div className="projects-carousel position-relative">
-        <div className="d-flex justify-content-center align-items-center">
-          {getVisibleProjects().map((project, idx) => (
-            <div
-              key={project.id}
-              className={`project-card ${idx === 1 ? 'active' : 'side'}`}
-            >
-              <div className="project-inner card">
-                <div className="project-image-container">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="project-image card-img-top"
-                    loading="lazy"
-                    onError={(e) => {
-                      setError("Erreur de chargement de l'image");
-                    }}
-                  />
-                  <div className="project-info card-img-overlay">
-                    <h3 className="card-title">{project.title}</h3>
-                    <p className="card-text">{project.description}</p>
+      <div className="projects-container container py-5">
+        <h2 className="text-center mb-5 projects-title">Mes Projets</h2>
+        <div 
+          className="projects-carousel position-relative"
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+        >
+          <div className="d-flex justify-content-center align-items-center">
+            {getVisibleProjects().map((project, idx) => (
+              <div
+                key={project.id}
+                className={`project-card ${idx === 1 ? 'active' : 'side'}`}
+              >
+                <div className="project-inner card">
+                  <div className="project-image-container">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="project-image card-img-top"
+                      loading="lazy"
+                      onError={(e) => {
+                        setError("Erreur de chargement de l'image");
+                      }}
+                    />
+                    <div className="project-info card-img-overlay">
+                      <h3 className="card-title">{project.title}</h3>
+                      <p className="card-text">{project.description}</p>
+                      <button className="btn btn-success mt-2">Voir plus</button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
+          
+          <button
+            onClick={prevSlide}
+            className="carousel-control prev"
+            aria-label="Projet précédent"
+          >
+            <i className="bi bi-chevron-left"></i>
+          </button>
+          
+          <button
+            onClick={nextSlide}
+            className="carousel-control next"
+            aria-label="Projet suivant"
+          >
+            <i className="bi bi-chevron-right"></i>
+          </button>
+
+          <div className="carousel-indicators mt-4">
+            {projects.map((_, idx) => (
+              <button
+                key={idx}
+                className={`carousel-indicator ${idx === activeIndex ? 'active' : ''}`}
+                onClick={() => setActiveIndex(idx)}
+                aria-label={`Aller au projet ${idx + 1}`}
+              />
+            ))}
+          </div>
         </div>
-        
-        <button
-          onClick={prevSlide}
-          className="carousel-control prev"
-          aria-label="Projet précédent"
-        >
-          <i className="bi bi-chevron-left"></i>
-        </button>
-        
-        <button
-          onClick={nextSlide}
-          className="carousel-control next"
-          aria-label="Projet suivant"
-        >
-          <i className="bi bi-chevron-right"></i>
-        </button>
       </div>
-    </div>
-  </section>
+    </section>
   );
 };
 
