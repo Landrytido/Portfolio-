@@ -1,13 +1,20 @@
+/* Projects.css */
+
 .projects-container {
-  overflow: hidden;
+  background-color: #1c1b1b;
+  color: white;
+  padding: 200px 0;
+  font-family: 'Roboto', sans-serif;
+
 }
 
 .projects-title {
+  color: #28a745;
+  margin-bottom: 2rem;
   font-size: 2.5rem;
   font-weight: bold;
-  color: #333;
-  text-transform: uppercase;
-  letter-spacing: 2px;
+  text-align: center;
+  animation: fadeInDown 1s ease-in-out;
 }
 
 .projects-carousel {
@@ -45,7 +52,7 @@
 
 .project-image-container {
   position: relative;
-  height: 300px;  /* Augmenté de 250px à 300px */
+  height: 400px;  /* Augmenté de 250px à 300px */
   overflow: hidden;
 }
 
@@ -79,23 +86,22 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: white;
+  background: #FFE135;
   border: none;
   width: 40px;
   height: 40px;
-  border-radius: 50%;
+  border-radius: 40%;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: all 0.2s ease;
   z-index: 3;
+  margin: 0 -30px;
 }
 
 .carousel-control:hover {
-  background: #f8f9fa;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background: #f0cc02;
 }
 
 .carousel-control.prev {
@@ -104,6 +110,28 @@
 
 .carousel-control.next {
   right: 1rem;
+}
+/* Animations */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media (max-width: 768px) {

@@ -10,7 +10,7 @@ const Projects = () => {
     {
       id: 1,
       title: "Projet 1",
-      image: "Projects/Projects1/photo1.jpg",
+      image: "Projects/Projects1/Capture d'écran 2025-02-01 113646.png",
       description: "Description du projet 1"
     },
     {
@@ -84,6 +84,7 @@ const Projects = () => {
   }
 
   return (
+    <section id="projects" className="projects-section">
     <div className="projects-container container py-5">
       <h2 className="text-center mb-5 projects-title">Mes Projets</h2>
       <div className="projects-carousel position-relative">
@@ -131,6 +132,7 @@ const Projects = () => {
         </button>
       </div>
     </div>
+  </section>
   );
 };
 

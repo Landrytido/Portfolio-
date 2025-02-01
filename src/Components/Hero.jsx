@@ -36,7 +36,7 @@ const Hero = () => {
                 <i className="fab fa-github"></i>
               </a>
               <a href="mailto:landrytido727@gmail.com" target="_blank" rel="noopener noreferrer">
-                <i className="fab fa-envelope"></i>
+                <i className="fas fa-envelope"></i>
               </a>
               <a href="https://wa.me/+32465362609" target="_blank" rel="noopener noreferrer">
                 <i className="fab fa-whatsapp"></i>

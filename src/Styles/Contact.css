@@ -116,6 +116,12 @@
   transform: scale(1.05);
 }
 
+.error-text {
+  color: red;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+}
+
 /* Animations */
 @keyframes fadeInDown {
   from {
