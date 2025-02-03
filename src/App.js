@@ -9,6 +9,7 @@ import AOS from 'aos';
 import './App.css'; // Importez votre fichier CSS global
 import Skills from './Components/Skills';
 import Footer from './Components/Footer';
+import ProjectCarousel from './Components/ProjectCarousel';
 
 const App = () => {
   React.useEffect(() => {
@@ -21,7 +22,8 @@ const App = () => {
       <Hero />
       <About />
       <Skills />
-      <Projects />
+      < ProjectCarousel />
+      {/* <Projects /> */}
       <Contact />
       <Footer />
     </div>
