@@ -21,6 +21,7 @@
 .info-container {
   width: 30%; /* Adjusted width */
   background: linear-gradient(to bottom, #1c1b1b, #000000, #1c1b1b);
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   color: white;
   position: relative;
@@ -55,6 +56,7 @@
   padding: 0.5rem 1rem;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 25px;
+  -webkit-backdrop-filter: blur(5px); /* Ajouté pour la compatibilité Safari */
   backdrop-filter: blur(5px);
   font-size: 0.9rem;
   color: white;
@@ -71,6 +73,7 @@
   width: 100%;
   padding: 1rem;
   background: linear-gradient(to bottom, #1c1b1b, #000000, #1c1b1b);
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   margin-top: 0.5rem; /* Adjusted margin */
   height: 30%; /* Adjusted height */
@@ -123,6 +126,7 @@
   color: white;
   cursor: pointer;
   transition: all 0.3s ease;
+  -webkit-backdrop-filter: blur(5px);
   backdrop-filter: blur(5px);
   position: absolute; /* Adjusted position */
   top: 50%; /* Center vertically */
