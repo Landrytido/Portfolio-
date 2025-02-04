@@ -74,67 +74,63 @@ const ProjectCarousel = () => {
   };
 
   return (
-    <div id="projects" className="project-section">
-      <div 
-        className="background-image"
-        style={{
-          backgroundImage: `url(${projects[currentIndex].image})`
-        }}
-      />
-      
-      <div className="content-overlay">
-        <div className="container h-100">
-          <div className="row h-100">
-            <div className="col-md-8 d-flex align-items-center">
-              <div className={`project-content ${!isTransitioning ? 'visible' : ''}`}>
-                <h2 className="display-4 fw-bold mb-4">{projects[currentIndex].title}</h2>
-                <p className="lead text-light mb-4">{projects[currentIndex].description}</p>
-                <div className="d-flex gap-2 mb-4">
-                  {projects[currentIndex].tags.map((tag, index) => (
-                    <span key={index} className="tag">{tag}</span>
-                  ))}
-                </div>
-                <a 
-                  href={projects[currentIndex].link} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="btn btn-primary btn-lg"
-                >
-                  Voir le projet
-                </a>
-              </div>
+    <div id="projects" className="project-section d-flex flex-column">
+      <h1 className="projects-title text-center my-4 pt-5">Mes Projets</h1> {/* Adjusted margin */}
+      <div className="content-container d-flex">
+        <div className="info-container p-5 d-flex flex-column justify-content-center position-relative">
+          <div className={`project-content ${!isTransitioning ? 'visible' : ''}`}>
+            <h2 className="display-4 fw-bold mb-4">{projects[currentIndex].title}</h2>
+            <p className="lead text-light mb-4">{projects[currentIndex].description}</p>
+            <div className="d-flex gap-2 mb-4">
+              {projects[currentIndex].tags.map((tag, index) => (
+                <span key={index} className="tag">{tag}</span>
+              ))}
             </div>
-          </div>
-        </div>
-
-        <div className="thumbnail-container">
-          {projects.map((project, index) => (
-            <div
-              key={project.id}
-              onClick={() => setCurrentIndex(index)}
-              className={`thumbnail ${index === currentIndex ? 'active' : ''}`}
-              aria-label={`Voir le projet ${project.title}`}
+            <a 
+              href={projects[currentIndex].link} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="btn btn-primary btn-lg"
             >
-              <img
-                src={project.image}
-                alt={project.title}
-                className="img-fluid"
-                onError={(e) => e.target.src = '/path/to/placeholder-image.png'}
-              />
-              <div className="thumbnail-overlay" />
-            </div>
-          ))}
+              Voir le projet
+            </a>
+          </div>
+          <button onClick={prevSlide} className="nav-arrow prev" aria-label="Projet précédent">
+            <ChevronLeft />
+          </button>
         </div>
 
-        <button onClick={prevSlide} className="nav-arrow prev" aria-label="Projet précédent">
-          <ChevronLeft />
-        </button>
-        <button onClick={nextSlide} className="nav-arrow next" aria-label="Projet suivant">
-          <ChevronRight />
-        </button>
+        <div 
+          className="background-image position-relative"
+          style={{
+            backgroundImage: `url(${projects[currentIndex].image})`
+          }}
+        >
+          <button onClick={nextSlide} className="nav-arrow next" aria-label="Projet suivant">
+            <ChevronRight />
+          </button>
+        </div>
+      </div>
+
+      <div className="thumbnail-container d-flex justify-content-center gap-3 mt-1"> {/* Adjusted margin */}
+        {projects.map((project, index) => (
+          <div
+            key={project.id}
+            onClick={() => setCurrentIndex(index)}
+            className={`thumbnail ${index === currentIndex ? 'active' : ''}`}
+            aria-label={`Voir le projet ${project.title}`}
+          >
+            <img
+              src={project.image}
+              alt={project.title}
+              className="img-fluid"
+              onError={(e) => e.target.src = '/path/to/placeholder-image.png'}
+            />
+            <div className="thumbnail-overlay" />
+          </div>
+        ))}
       </div>
     </div>
-
   );
 };
 
