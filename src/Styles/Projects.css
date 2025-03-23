@@ -1,198 +1,212 @@
-/* Projects.css */
-.projects-container {
-  background-color: #1c1b1b;
-  color: white;
-  padding: 200px 0;
-  font-family: 'Roboto', sans-serif;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+:root {
+  --primary: #28a745;
+  --accent: #FFE135;
 }
 
-.projects-title {
-  color: #28a745;
-  margin-bottom: 2rem;
+.project-section {
+  position: relative;
+  max-height: 90vh;
+  overflow: hidden;
+}
+
+.section-title {
+  position: relative;
+  z-index: 1;
+  color: var(--accent);
+  padding-top: 2rem;
   font-size: 2.5rem;
   font-weight: bold;
-  text-align: center;
-  animation: fadeInDown 1s ease-in-out;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
-.projects-carousel {
-  padding: 2rem 0;
-  user-select: none;
+.background-image {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.4;
+  transition: opacity 1s ease-in-out;
 }
 
-.project-card {
-  transition: all 0.5s ease;
-  width: 550px!important; /* Ajusté pour mieux s'adapter à la taille des images */
+.content-overlay {
   position: relative;
-  cursor: pointer;
+  z-index: 1;
+  min-height: 100vh;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7));
 }
 
-.project-card.side {
-  transform: scale(0.85);
-  opacity: 0.6;
-  filter: blur(1px);
+.thumbnail-container {
+  position: absolute;
+  bottom: 17rem;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  overflow-x: auto;
+  padding: 0 9rem;
 }
 
-.project-card.active {
-  transform: scale(1);
-  opacity: 1;
-  z-index: 2;
-}
-
-.project-card.active:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-.project-inner {
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  background-color: #2c2c2c;
-  border: none;
-}
-
-.project-image-container {
-  position: relative;
-  height: 420px; /* Ajusté pour mieux s'adapter à la taille des images */
-  overflow: hidden;
-}
-
-.project-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Utilisé pour remplir le conteneur sans rognage significatif */
-  transition: transform 0.5s ease;
-}
-
-.project-info {
-  background: rgba(0, 0, 0, 0.8);
-  color: white;
-  opacity: 0;
-  transition: all 0.3s ease;
+.thumbnail-scroll {
   display: flex;
-  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
+  margin: 0 auto;
+  max-width: 100%;
   justify-content: center;
-  align-items: center;
-  padding: 1.5rem;
-  text-align: center;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
-.project-card.active:hover .project-info {
-  opacity: 1;
+.thumbnail {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex: 0 0 100px;
 }
 
-.project-card.active:hover .project-image {
+.thumbnail:hover {
+  transform: scale(1.05);
+}
+
+.thumbnail.active {
   transform: scale(1.1);
+  box-shadow: 0 0 0 2px var(--primary);
 }
 
-.carousel-control {
+.thumbnail img {
+  width: 100px;
+  height: 65px;
+  object-fit: cover;
+}
+
+.thumbnail-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3));
+  transition: opacity 0.3s ease;
+}
+
+.thumbnail.active .thumbnail-overlay {
+  opacity: 0;
+}
+
+.project-content {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s ease;
+}
+
+.project-content.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.tag {
+  background-color: var(--primary);
+  color: white;
+  border-radius: 20px;
+  padding: 6px 12px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  display: inline-block;
+  margin: 0.25rem;
+}
+
+.nav-arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: #FFE135;
+  z-index: 2;
+  background-color: rgba(40, 167, 69, 0.2);
   border: none;
-  width: 40px;
-  height: 40px;
   border-radius: 50%;
+  width: 48px;
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
+  color: var(--primary);
   transition: all 0.3s ease;
-  z-index: 3;
-  margin: 0 -30px;
+  cursor: pointer;
 }
 
-.carousel-control:hover {
-  background: #f0cc02;
+.nav-arrow:hover {
+  background-color: rgba(40, 167, 69, 0.3);
   transform: translateY(-50%) scale(1.1);
 }
 
-.carousel-control.prev {
+.nav-arrow.prev {
   left: 1rem;
 }
 
-.carousel-control.next {
+.nav-arrow.next {
   right: 1rem;
 }
 
-.carousel-indicators {
-  display: flex;
-  justify-content: center;
-  gap: 0.5rem;
-  margin-top: 2rem;
+.btn-primary {
+  background-color: var(--primary);
+  border-color: var(--primary);
 }
 
-.carousel-indicator {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: #6c757d;
-  border: none;
-  padding: 0;
-  transition: all 0.3s ease;
+.btn-primary:hover {
+  background-color: #218838;
+  border-color: #218838;
 }
 
-.carousel-indicator.active {
-  background: #28a745;
-  width: 20px;
-  border-radius: 5px;
+.text-primary {
+  color: var(--accent) !important;
 }
 
-/* Animations */
-@keyframes fadeInDown {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Media Queries */
 @media (max-width: 768px) {
-  .project-card {
-    width: 280px;
-    margin: 0 0.5rem;
+  .section-title {
+    font-size: 2rem;
+    padding-top: 1.5rem;
   }
 
-  .project-image-container {
-    height: 300px;
+  .project-content {
+    padding: 1rem;
   }
 
-  .projects-title {
+  .thumbnail {
+    flex: 0 0 80px;
+  }
+
+  .thumbnail img {
+    width: 80px;
+    height: 50px;
+  }
+
+  .display-4 {
     font-size: 2rem;
   }
 
-  .projects-container {
-    padding: 100px 0;
-  }
-
-  .carousel-control {
-    width: 35px;
-    height: 35px;
+  .lead {
+    font-size: 1rem;
   }
 }
 
-@media (max-width: 480px) {
-  .project-card {
-    width: 240px;
+@media (max-width: 576px) {
+  .section-title {
+    font-size: 1.75rem;
+    padding-top: 1rem;
   }
 
-  .project-image-container {
-    height: 250px;
+  .project-content {
+    margin: 0 1rem;
   }
-}
 
-/* Styles pour la fenêtre modale */
-.modal-image {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
+  .thumbnail-container {
+    bottom: 1rem;
+  }
+
+  .thumbnail-scroll {
+    padding: 0.5rem;
+  }
 }

@@ -1,0 +1,26 @@
+/* App.css */
+
+body, html {
+  margin: 0;
+  padding: 0;
+  background-color: #313030; /* Couleur de fond sombre pour tout le site */
+  color: #ffffff; /* Couleur du texte en blanc */
+}
+
+.app {
+  background-color: #1c1b1b; /* Couleur de fond sombre pour tout le site */
+}
+
+.section {
+  padding: 60px 20px;
+}
+
+.section-dark {
+  background-color: #3a3939; /* Fond sombre pour les sections */
+  color: #ffffff; /* Texte en blanc */
+}
+
+.section-light {
+  background-color: #1e1e1e; /* Fond légèrement plus clair pour contraste */
+  color: #ffffff; /* Texte en blanc */
+}
