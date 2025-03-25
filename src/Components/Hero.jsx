@@ -1,10 +1,15 @@
 // src/Components/Hero.jsx
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { FaLinkedin, FaGithub, FaEnvelope, FaWhatsapp, FaArrowDown } from 'react-icons/fa';
 import { Link } from 'react-scroll';
+import { ThemeContext } from '../contexts/ThemeContext';
+import { LanguageContext } from '../contexts/LanguageContext';
 import '../Styles/Hero.css';
 
 const Hero = () => {
+    const { theme } = useContext(ThemeContext);
+    const { texts } = useContext(LanguageContext);
+
     useEffect(() => {
         // Animation de l'émoji
         const emojiElement = document.querySelector('.hero-emoji');
@@ -43,17 +48,17 @@ const Hero = () => {
                         <span className="highlight">TIF</span>
                     </h1>
                     <h2 className="hero-subtitle">
-                        DÉVELOPPEUR WEB
+                        {texts.developerTitle}
                     </h2>
                     <p className="hero-text">
-                        Passionné par la création d'applications web modernes et réactives.
+                        {texts.passion}
                         <br />
                         <span className="hero-accent">JavaScript | React | Java | UX/UI</span>
                     </p>
 
                     <div className="hero-buttons">
                         <div className="hero-main-actions">
-                            <a href="/CV.pdf" className="cv-link" download aria-label="Télécharger CV">
+                            <a href="/CV.pdf" className="cv-link" download aria-label={texts.downloadCV}>
                                 <div className="cv-circle">
                                     <span className="cv-text">CV</span>
                                 </div>
@@ -80,10 +85,10 @@ const Hero = () => {
                             smooth={true}
                             duration={800}
                             className="scroll-down-link"
-                            aria-label="Naviguer vers les projets"
+                            aria-label={texts.viewProjects}
                         >
                             <div className="scroll-down">
-                                <span>Voir mes projets</span>
+                                <span>{texts.viewProjects}</span>
                                 <FaArrowDown className="scroll-icon" />
                             </div>
                         </Link>

@@ -1,12 +1,17 @@
 // src/Components/Navbar.jsx
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Link } from 'react-scroll';
 import { FaHome, FaUser, FaCode, FaEnvelope, FaBars, FaTimes } from 'react-icons/fa';
+import { ThemeContext } from '../contexts/ThemeContext';
+import { LanguageContext } from '../contexts/LanguageContext';
+import ThemeSwitcher from './ThemeSwitcher';
+import LanguageSwitcher from './LanguageSwitcher';
 import '../Styles/Navbar.css';
 
 const Navbar = () => {
     const [navbarDark, setNavbarDark] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
+    const { texts } = useContext(LanguageContext);
 
     const handleScroll = () => {
         if (window.scrollY > 80) {
@@ -27,7 +32,6 @@ const Navbar = () => {
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
 
-        // Nettoyage de l'écouteur d'événement
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
@@ -41,9 +45,14 @@ const Navbar = () => {
                         <span className="logo-text">Landry.<span className="logo-highlight">T</span></span>
                     </div>
 
-                    <button className="navbar-toggler" onClick={toggleMenu} aria-label="Toggle navigation">
-                        {menuOpen ? <FaTimes /> : <FaBars />}
-                    </button>
+                    <div className="navbar-actions">
+                        <ThemeSwitcher />
+                        <LanguageSwitcher />
+
+                        <button className="navbar-toggler" onClick={toggleMenu} aria-label="Toggle navigation">
+                            {menuOpen ? <FaTimes /> : <FaBars />}
+                        </button>
+                    </div>
 
                     <div className="navbar-links">
                         <Link
@@ -56,7 +65,7 @@ const Navbar = () => {
                             activeClass="active"
                         >
                             <FaHome className="nav-icon" />
-                            <span>Accueil</span>
+                            <span>{texts.home}</span>
                         </Link>
 
                         <Link
@@ -69,7 +78,7 @@ const Navbar = () => {
                             activeClass="active"
                         >
                             <FaUser className="nav-icon" />
-                            <span>À propos</span>
+                            <span>{texts.about}</span>
                         </Link>
 
                         <Link
@@ -82,7 +91,7 @@ const Navbar = () => {
                             activeClass="active"
                         >
                             <FaCode className="nav-icon" />
-                            <span>Projets</span>
+                            <span>{texts.projects}</span>
                         </Link>
 
                         <Link
@@ -95,7 +104,7 @@ const Navbar = () => {
                             activeClass="active"
                         >
                             <FaEnvelope className="nav-icon" />
-                            <span>Contact</span>
+                            <span>{texts.contact}</span>
                         </Link>
                     </div>
                 </div>
@@ -104,6 +113,11 @@ const Navbar = () => {
             {/* Menu mobile */}
             <div className={`mobile-menu ${menuOpen ? 'open' : ''}`}>
                 <div className="mobile-menu-container">
+                    <div className="mobile-menu-actions">
+                        <ThemeSwitcher />
+                        <LanguageSwitcher />
+                    </div>
+
                     <Link
                         to="hero"
                         spy={true}
@@ -115,7 +129,7 @@ const Navbar = () => {
                         onClick={closeMenu}
                     >
                         <FaHome className="mobile-nav-icon" />
-                        <span>Accueil</span>
+                        <span>{texts.home}</span>
                     </Link>
 
                     <Link
@@ -129,7 +143,7 @@ const Navbar = () => {
                         onClick={closeMenu}
                     >
                         <FaUser className="mobile-nav-icon" />
-                        <span>À propos</span>
+                        <span>{texts.about}</span>
                     </Link>
 
                     <Link
@@ -143,7 +157,7 @@ const Navbar = () => {
                         onClick={closeMenu}
                     >
                         <FaCode className="mobile-nav-icon" />
-                        <span>Projets</span>
+                        <span>{texts.projects}</span>
                     </Link>
 
                     <Link
@@ -157,7 +171,7 @@ const Navbar = () => {
                         onClick={closeMenu}
                     >
                         <FaEnvelope className="mobile-nav-icon" />
-                        <span>Contact</span>
+                        <span>{texts.contact}</span>
                     </Link>
                 </div>
             </div>
