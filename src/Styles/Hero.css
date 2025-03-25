@@ -1,121 +1,360 @@
-/* Hero.css */
+/* src/Styles/Hero.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+:root {
+  --primary: #28a745;
+  --accent: #FFE135;
+  --dark-bg: #121212;
+  --light-text: #ffffff;
+}
 
 .hero {
   position: relative;
   min-height: 100vh;
-  color: white;
-  background-color: #121212; /* Couleur de fond sombre */
+  color: var(--light-text);
+  background-color: var(--dark-bg);
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
 }
 
-.hero::after {
-  content: '';
+/* Background effects */
+.hero-background {
   position: absolute;
-  bottom: 0;
+  top: 0;
   left: 0;
-  width: 100%;
-  height: 100px; /* Ajustez la hauteur du dégradé selon vos besoins */
-  background: linear-gradient(to bottom, #121212, #1c1b1b);
-  z-index: 1;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+}
+
+.hero-gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at top right, rgba(40, 167, 69, 0.2), transparent 70%),
+    radial-gradient(circle at bottom left, rgba(255, 225, 53, 0.15), transparent 70%);
+}
+
+.hero-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.03) 0.5%),
+    radial-gradient(circle at 30% 50%, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.03) 0.5%),
+    radial-gradient(circle at 50% 80%, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.03) 0.5%),
+    radial-gradient(circle at 70% 10%, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.03) 0.5%),
+    radial-gradient(circle at 90% 90%, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.03) 0.5%);
+  background-size: 200% 200%;
+  animation: moveParticles 20s infinite linear;
+}
+
+@keyframes moveParticles {
+  0% {
+    background-position: 0% 0%;
+  }
+
+  100% {
+    background-position: 100% 100%;
+  }
 }
 
 .hero-content {
   position: relative;
   z-index: 2;
-  animation: fadeIn 2s ease-in-out;
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+  animation: fadeIn 1.5s ease-in-out;
 }
 
 .hero-title {
-  font-size: 5rem; /* Augmenter la taille de la police */
-  font-weight: bold;
+  font-size: 5rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .hero-emoji {
   display: inline-flex;
-  width: 60px; /* Augmenter la taille de l'emoji */
-  height: 60px;
-  background-color: #FFE135; /* Couleur jaune pour l'emoji */
+  width: 80px;
+  height: 80px;
+  background-color: var(--accent);
   border-radius: 50%;
   justify-content: center;
   align-items: center;
-  margin: 0 5px;
-  vertical-align: middle;
+  margin: 0 10px;
+  transition: transform 0.3s ease;
+  box-shadow: 0 5px 15px rgba(255, 225, 53, 0.3);
 }
 
 .hero-emoji span {
-  font-size: 40px; /* Augmenter la taille de l'emoji */
+  font-size: 40px;
+}
+
+.hero-emoji.wave {
+  animation: wave 1s ease-in-out;
+}
+
+@keyframes wave {
+
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+
+  25% {
+    transform: rotate(-15deg);
+  }
+
+  75% {
+    transform: rotate(15deg);
+  }
 }
 
 .highlight {
-  color: #28a745; /* Couleur verte */
+  color: var(--primary);
+  text-shadow: 0 0 15px rgba(40, 167, 69, 0.3);
 }
 
 .hero-subtitle {
-  font-size: 4rem; /* Augmenter la taille de la police */
-  color: #28a745; /* Couleur verte */
-  font-weight: bold;
+  font-size: 3.5rem;
+  color: var(--primary);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  letter-spacing: 1px;
+  animation: slideFromRight 1.5s ease-in-out;
 }
 
 .hero-text {
-  font-size: 1.5rem; /* Augmenter la taille de la police */
+  font-size: 1.5rem;
+  margin-bottom: 3rem;
+  line-height: 1.8;
+  animation: slideFromLeft 1.5s ease-in-out;
+}
+
+.hero-accent {
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 1.2rem;
+  display: inline-block;
+  margin-top: 8px;
 }
 
 .hero-buttons {
-  margin-top: 40px; /* Ajouter plus d'espace entre les textes et les nouveaux éléments */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: fadeInUp 1.5s ease-in-out;
+}
+
+.hero-main-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 3rem;
+  margin-bottom: 3rem;
 }
 
 .cv-link {
   text-decoration: none;
+  display: block;
 }
 
 .cv-circle {
   width: 100px;
   height: 100px;
-  background-color: #28a745;
+  background-color: var(--primary);
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
   animation: pulse 2s infinite;
+}
+
+.cv-circle:hover {
+  transform: scale(1.1);
+  background-color: #218838;
+  box-shadow: 0 8px 20px rgba(40, 167, 69, 0.6);
 }
 
 .cv-text {
   color: white;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   font-weight: bold;
 }
 
 @keyframes pulse {
   0% {
     transform: scale(1);
+    box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
   }
+
   50% {
-    transform: scale(1.1);
+    transform: scale(1.07);
+    box-shadow: 0 8px 20px rgba(40, 167, 69, 0.6);
   }
+
   100% {
     transform: scale(1);
+    box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
   }
 }
 
 .social-links {
   display: flex;
-  gap: 15px;
-  margin-left: auto; /* Aligner les liens sociaux à droite */
+  gap: 20px;
 }
 
-.social-links a {
+.social-icon {
   color: white;
-  font-size: 2rem;
-  transition: color 0.3s ease;
+  font-size: 2.2rem;
+  transition: all 0.3s ease;
 }
 
-.social-links a:hover {
-  color: #28a745;
+.social-icon:hover {
+  color: var(--accent);
+  transform: translateY(-5px);
+  filter: drop-shadow(0 5px 10px rgba(255, 225, 53, 0.4));
+}
+
+.scroll-down-link {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.scroll-down {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: var(--light-text);
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  animation: bounce 2s infinite;
+}
+
+.scroll-down:hover {
+  color: var(--primary);
+}
+
+.scroll-icon {
+  font-size: 1.5rem;
+}
+
+@keyframes bounce {
+
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+
+  40% {
+    transform: translateY(-10px);
+  }
+
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Media Queries pour la responsivité */
+@media (max-width: 992px) {
+  .hero-title {
+    font-size: 4rem;
+  }
+
+  .hero-emoji {
+    width: 70px;
+    height: 70px;
+  }
+
+  .hero-emoji span {
+    font-size: 35px;
+  }
+
+  .hero-subtitle {
+    font-size: 3rem;
+  }
+}
+
 @media (max-width: 768px) {
   .hero-title {
-    font-size: 3rem;
+    font-size: 3.5rem;
+  }
+
+  .hero-emoji {
+    width: 60px;
+    height: 60px;
+  }
+
+  .hero-emoji span {
+    font-size: 30px;
   }
 
   .hero-subtitle {
@@ -123,7 +362,47 @@
   }
 
   .hero-text {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
+  }
+
+  .cv-circle {
+    width: 90px;
+    height: 90px;
+  }
+
+  .cv-text {
+    font-size: 1.5rem;
+  }
+
+  .social-icon {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .hero-emoji {
+    width: 50px;
+    height: 50px;
+  }
+
+  .hero-emoji span {
+    font-size: 25px;
+  }
+
+  .hero-subtitle {
+    font-size: 2rem;
+  }
+
+  .hero-text {
+    font-size: 1.1rem;
+  }
+
+  .hero-accent {
+    font-size: 1rem;
   }
 
   .cv-circle {
@@ -132,30 +411,14 @@
   }
 
   .cv-text {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
   }
 
-  .hero-buttons {
-    align-items: center; /* Centrer les éléments sur les petits écrans */
+  .social-icon {
+    font-size: 1.6rem;
   }
 
-  .social-links {
-    justify-content: center;
-    margin-top: 20px;
-    margin-left: 0; /* Supprimer la marge gauche sur les petits écrans */
-  }
-
-  .social-links a {
-    font-size: 1.5rem;
-  }
-}
-
-/* Animation */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
+  .hero-main-actions {
+    gap: 2rem;
   }
 }

@@ -1,110 +1,167 @@
+// src/Components/Navbar.jsx
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-scroll';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min'; // Importez Bootstrap JavaScript
-import '../Styles/Navbar.css'; // Importez votre fichier CSS personnalisé
+import { FaHome, FaUser, FaCode, FaEnvelope, FaBars, FaTimes } from 'react-icons/fa';
+import '../Styles/Navbar.css';
 
 const Navbar = () => {
-    const [navbarTransparent, setNavbarTransparent] = useState(false);
+    const [navbarDark, setNavbarDark] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
 
     const handleScroll = () => {
-        if (window.scrollY > 50) {
-            setNavbarTransparent(true);
+        if (window.scrollY > 80) {
+            setNavbarDark(true);
         } else {
-            setNavbarTransparent(false);
+            setNavbarDark(false);
         }
     };
 
-    const handleToggleMenu = () => {
+    const toggleMenu = () => {
         setMenuOpen(!menuOpen);
     };
 
-    const handleLinkClick = () => {
+    const closeMenu = () => {
         setMenuOpen(false);
-    };
-
-    const handleClickOutside = (event) => {
-        if (menuOpen && !event.target.closest('.navbar')) {
-            setMenuOpen(false);
-        }
     };
 
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
-        document.addEventListener('click', handleClickOutside);
+
+        // Nettoyage de l'écouteur d'événement
         return () => {
             window.removeEventListener('scroll', handleScroll);
-            document.removeEventListener('click', handleClickOutside);
         };
-    }, [menuOpen]);
+    }, []);
 
     return (
-        <nav className={`navbar navbar-expand-lg fixed-top ${navbarTransparent ? 'navbar-transparent' : 'navbar-colored'}`}>
-            <div className="container">
-                {/* Logo */}
-                <a className="navbar-brand" href="#">
-                    <span className="navbar-logo">Web</span>
-                </a>
+        <>
+            <nav className={`navbar ${navbarDark ? 'navbar-dark' : 'navbar-transparent'}`}>
+                <div className="container">
+                    <div className="navbar-brand">
+                        <span className="logo-text">Landry.<span className="logo-highlight">T</span></span>
+                    </div>
 
-                {/* Toggler Button for Mobile */}
-                <button className="navbar-toggler" type="button" onClick={handleToggleMenu} aria-controls="navbarNav" aria-expanded={menuOpen} aria-label="Toggle navigation">
-                    <span className={`navbar-toggler-icon ${menuOpen ? 'open' : ''}`}></span>
-                </button>
+                    <button className="navbar-toggler" onClick={toggleMenu} aria-label="Toggle navigation">
+                        {menuOpen ? <FaTimes /> : <FaBars />}
+                    </button>
 
-                {/* Menu Items for Large Screens */}
-                <div className="collapse navbar-collapse d-none d-lg-flex">
-                    <ul className="navbar-nav ms-auto">
-                        <li className="nav-item">
-                            <Link className="nav-link" to="hero" smooth={true} duration={500}>
-                                Accueil <i className="fas fa-home"></i>
-                            </Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="about" smooth={true} duration={500}>
-                                À propos <i className="fas fa-info-circle"></i>
-                            </Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="projects" smooth={true} duration={500}>
-                                Projets <i className="fas fa-project-diagram"></i>
-                            </Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="contact" smooth={true} duration={500}>
-                                Contact <i className="fas fa-envelope"></i>
-                            </Link>
-                        </li>
-                    </ul>
+                    <div className="navbar-links">
+                        <Link
+                            to="hero"
+                            spy={true}
+                            smooth={true}
+                            offset={-70}
+                            duration={500}
+                            className="nav-item"
+                            activeClass="active"
+                        >
+                            <FaHome className="nav-icon" />
+                            <span>Accueil</span>
+                        </Link>
+
+                        <Link
+                            to="about"
+                            spy={true}
+                            smooth={true}
+                            offset={-70}
+                            duration={500}
+                            className="nav-item"
+                            activeClass="active"
+                        >
+                            <FaUser className="nav-icon" />
+                            <span>À propos</span>
+                        </Link>
+
+                        <Link
+                            to="projects"
+                            spy={true}
+                            smooth={true}
+                            offset={-70}
+                            duration={500}
+                            className="nav-item"
+                            activeClass="active"
+                        >
+                            <FaCode className="nav-icon" />
+                            <span>Projets</span>
+                        </Link>
+
+                        <Link
+                            to="contact"
+                            spy={true}
+                            smooth={true}
+                            offset={-70}
+                            duration={500}
+                            className="nav-item"
+                            activeClass="active"
+                        >
+                            <FaEnvelope className="nav-icon" />
+                            <span>Contact</span>
+                        </Link>
+                    </div>
                 </div>
+            </nav>
 
-                {/* Floating Menu for Mobile */}
-                <div className={`floating-menu collapse ${menuOpen ? 'show' : ''}`}>
-                    <ul className="navbar-nav">
-                        <li className="nav-item">
-                            <Link className="nav-link" to="hero" smooth={true} duration={500} onClick={handleLinkClick}>
-                                Accueil <i className="fas fa-home"></i>
-                            </Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="about" smooth={true} duration={500} onClick={handleLinkClick}>
-                                À propos <i className="fas fa-info-circle"></i>
-                            </Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="projects" smooth={true} duration={500} onClick={handleLinkClick}>
-                                Projets <i className="fas fa-project-diagram"></i>
-                            </Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="contact" smooth={true} duration={500} onClick={handleLinkClick}>
-                                Contact <i className="fas fa-envelope"></i>
-                            </Link>
-                        </li>
-                    </ul>
+            {/* Menu mobile */}
+            <div className={`mobile-menu ${menuOpen ? 'open' : ''}`}>
+                <div className="mobile-menu-container">
+                    <Link
+                        to="hero"
+                        spy={true}
+                        smooth={true}
+                        offset={-70}
+                        duration={500}
+                        className="mobile-nav-item"
+                        activeClass="active"
+                        onClick={closeMenu}
+                    >
+                        <FaHome className="mobile-nav-icon" />
+                        <span>Accueil</span>
+                    </Link>
+
+                    <Link
+                        to="about"
+                        spy={true}
+                        smooth={true}
+                        offset={-70}
+                        duration={500}
+                        className="mobile-nav-item"
+                        activeClass="active"
+                        onClick={closeMenu}
+                    >
+                        <FaUser className="mobile-nav-icon" />
+                        <span>À propos</span>
+                    </Link>
+
+                    <Link
+                        to="projects"
+                        spy={true}
+                        smooth={true}
+                        offset={-70}
+                        duration={500}
+                        className="mobile-nav-item"
+                        activeClass="active"
+                        onClick={closeMenu}
+                    >
+                        <FaCode className="mobile-nav-icon" />
+                        <span>Projets</span>
+                    </Link>
+
+                    <Link
+                        to="contact"
+                        spy={true}
+                        smooth={true}
+                        offset={-70}
+                        duration={500}
+                        className="mobile-nav-item"
+                        activeClass="active"
+                        onClick={closeMenu}
+                    >
+                        <FaEnvelope className="mobile-nav-icon" />
+                        <span>Contact</span>
+                    </Link>
                 </div>
             </div>
-        </nav>
+        </>
     );
 };
 

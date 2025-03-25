@@ -1,26 +1,117 @@
-/* App.css */
-
-body, html {
+body,
+html {
   margin: 0;
   padding: 0;
-  background-color: #313030; /* Couleur de fond sombre pour tout le site */
-  color: #ffffff; /* Couleur du texte en blanc */
+  background-color: #121212;
+  color: #ffffff;
+  font-family: 'Poppins', sans-serif;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 .app {
-  background-color: #1c1b1b; /* Couleur de fond sombre pour tout le site */
+  background-color: #121212;
+  min-height: 100vh;
+  position: relative;
 }
 
-.section {
-  padding: 60px 20px;
+/* Style pour les barres de défilement */
+::-webkit-scrollbar {
+  width: 10px;
 }
 
-.section-dark {
-  background-color: #3a3939; /* Fond sombre pour les sections */
-  color: #ffffff; /* Texte en blanc */
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
 }
 
-.section-light {
-  background-color: #1e1e1e; /* Fond légèrement plus clair pour contraste */
-  color: #ffffff; /* Texte en blanc */
+::-webkit-scrollbar-thumb {
+  background: #28a745;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #218838;
+}
+
+/* Style pour la sélection de texte */
+::selection {
+  background-color: #28a745;
+  color: white;
+}
+
+/* Styles de base pour les sections */
+section {
+  padding: 100px 0;
+  position: relative;
+}
+
+section h2 {
+  color: #28a745;
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+/* Effet de transition entre les sections */
+section::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background: linear-gradient(to bottom, transparent, #121212);
+  z-index: 1;
+  pointer-events: none;
+}
+
+section:last-of-type::after {
+  display: none;
+}
+
+/* Effet de focus sur les éléments interactifs */
+a:focus,
+button:focus {
+  outline: 2px solid #28a745;
+  outline-offset: 2px;
+}
+
+/* Animation de transition de page */
+.page-transition {
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* Styles pour les titres de section avec effet de surlignage */
+.section-title {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 3rem;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background-color: #28a745;
+  transform: scaleX(0.3);
+  transform-origin: center;
+  transition: transform 0.3s ease;
+}
+
+.section-title:hover::after {
+  transform: scaleX(1);
 }
