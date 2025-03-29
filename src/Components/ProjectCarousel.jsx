@@ -75,7 +75,7 @@ const ProjectCarousel = () => {
 
     return (
         <div id="projects" className="project-section d-flex flex-column">
-            <h1 className="projects-title text-center my-4 pt-5">Mes Projets</h1> {/* Adjusted margin */}
+            <h1 className="projects-title text-center my-4 pt-5">Mes Projets</h1>
             <div className="content-container">
                 <div className="background-image position-relative"
                     style={{
