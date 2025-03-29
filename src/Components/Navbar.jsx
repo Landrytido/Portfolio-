@@ -1,17 +1,15 @@
-// src/Components/Navbar.jsx
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-scroll';
 import { FaHome, FaUser, FaCode, FaEnvelope, FaBars, FaTimes } from 'react-icons/fa';
-import { ThemeContext } from '../contexts/ThemeContext';
-import { LanguageContext } from '../contexts/LanguageContext';
 import ThemeSwitcher from './ThemeSwitcher';
 import LanguageSwitcher from './LanguageSwitcher';
+import { useTranslation } from '../hooks/useTranslation';
 import '../Styles/Navbar.css';
 
 const Navbar = () => {
     const [navbarDark, setNavbarDark] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
-    const { texts } = useContext(LanguageContext);
+    const { t } = useTranslation();
 
     const handleScroll = () => {
         if (window.scrollY > 80) {
@@ -31,11 +29,17 @@ const Navbar = () => {
 
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
+        if (menuOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'auto';
+        }
 
         return () => {
             window.removeEventListener('scroll', handleScroll);
+            document.body.style.overflow = 'auto';
         };
-    }, []);
+    }, [menuOpen]);
 
     return (
         <>
@@ -44,16 +48,6 @@ const Navbar = () => {
                     <div className="navbar-brand">
                         <span className="logo-text">Landry.<span className="logo-highlight">T</span></span>
                     </div>
-
-                    <div className="navbar-actions">
-                        <ThemeSwitcher />
-                        <LanguageSwitcher />
-
-                        <button className="navbar-toggler" onClick={toggleMenu} aria-label="Toggle navigation">
-                            {menuOpen ? <FaTimes /> : <FaBars />}
-                        </button>
-                    </div>
-
                     <div className="navbar-links">
                         <Link
                             to="hero"
@@ -65,7 +59,7 @@ const Navbar = () => {
                             activeClass="active"
                         >
                             <FaHome className="nav-icon" />
-                            <span>{texts.home}</span>
+                            <span>{t('navbar.home')}</span>
                         </Link>
 
                         <Link
@@ -78,7 +72,7 @@ const Navbar = () => {
                             activeClass="active"
                         >
                             <FaUser className="nav-icon" />
-                            <span>{texts.about}</span>
+                            <span>{t('navbar.about')}</span>
                         </Link>
 
                         <Link
@@ -91,7 +85,7 @@ const Navbar = () => {
                             activeClass="active"
                         >
                             <FaCode className="nav-icon" />
-                            <span>{texts.projects}</span>
+                            <span>{t('navbar.projects')}</span>
                         </Link>
 
                         <Link
@@ -104,75 +98,80 @@ const Navbar = () => {
                             activeClass="active"
                         >
                             <FaEnvelope className="nav-icon" />
-                            <span>{texts.contact}</span>
+                            <span>{t('navbar.contact')}</span>
                         </Link>
+                    </div>
+                    <div className="navbar-controls">
+                        <ThemeSwitcher />
+                        <LanguageSwitcher />
+                        <button className="navbar-toggler" onClick={toggleMenu} aria-label="Toggle navigation">
+                            {menuOpen ? <FaTimes /> : <FaBars />}
+                        </button>
                     </div>
                 </div>
             </nav>
 
-            {/* Menu mobile */}
             <div className={`mobile-menu ${menuOpen ? 'open' : ''}`}>
                 <div className="mobile-menu-container">
-                    <div className="mobile-menu-actions">
-                        <ThemeSwitcher />
-                        <LanguageSwitcher />
+                    <div className="mobile-nav-links">
+                        <Link
+                            to="hero"
+                            spy={true}
+                            smooth={true}
+                            offset={-70}
+                            duration={500}
+                            className="mobile-nav-item"
+                            activeClass="active"
+                            onClick={closeMenu}
+                        >
+                            <FaHome className="mobile-nav-icon" />
+                            <span>{t('navbar.home')}</span>
+                        </Link>
+
+                        <Link
+                            to="about"
+                            spy={true}
+                            smooth={true}
+                            offset={-70}
+                            duration={500}
+                            className="mobile-nav-item"
+                            activeClass="active"
+                            onClick={closeMenu}
+                        >
+                            <FaUser className="mobile-nav-icon" />
+                            <span>{t('navbar.about')}</span>
+                        </Link>
+
+                        <Link
+                            to="projects"
+                            spy={true}
+                            smooth={true}
+                            offset={-70}
+                            duration={500}
+                            className="mobile-nav-item"
+                            activeClass="active"
+                            onClick={closeMenu}
+                        >
+                            <FaCode className="mobile-nav-icon" />
+                            <span>{t('navbar.projects')}</span>
+                        </Link>
+
+                        <Link
+                            to="contact"
+                            spy={true}
+                            smooth={true}
+                            offset={-70}
+                            duration={500}
+                            className="mobile-nav-item"
+                            activeClass="active"
+                            onClick={closeMenu}
+                        >
+                            <FaEnvelope className="mobile-nav-icon" />
+                            <span>{t('navbar.contact')}</span>
+                        </Link>
                     </div>
-
-                    <Link
-                        to="hero"
-                        spy={true}
-                        smooth={true}
-                        offset={-70}
-                        duration={500}
-                        className="mobile-nav-item"
-                        activeClass="active"
-                        onClick={closeMenu}
-                    >
-                        <FaHome className="mobile-nav-icon" />
-                        <span>{texts.home}</span>
-                    </Link>
-
-                    <Link
-                        to="about"
-                        spy={true}
-                        smooth={true}
-                        offset={-70}
-                        duration={500}
-                        className="mobile-nav-item"
-                        activeClass="active"
-                        onClick={closeMenu}
-                    >
-                        <FaUser className="mobile-nav-icon" />
-                        <span>{texts.about}</span>
-                    </Link>
-
-                    <Link
-                        to="projects"
-                        spy={true}
-                        smooth={true}
-                        offset={-70}
-                        duration={500}
-                        className="mobile-nav-item"
-                        activeClass="active"
-                        onClick={closeMenu}
-                    >
-                        <FaCode className="mobile-nav-icon" />
-                        <span>{texts.projects}</span>
-                    </Link>
-
-                    <Link
-                        to="contact"
-                        spy={true}
-                        smooth={true}
-                        offset={-70}
-                        duration={500}
-                        className="mobile-nav-item"
-                        activeClass="active"
-                        onClick={closeMenu}
-                    >
-                        <FaEnvelope className="mobile-nav-icon" />
-                        <span>{texts.contact}</span>
-                    </Link>
+                    <div className="mobile-menu-footer">
+                    </div>
                 </div>
             </div>
         </>

@@ -1,14 +1,11 @@
-// src/Components/Hero.jsx
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect } from 'react';
 import { FaLinkedin, FaGithub, FaEnvelope, FaWhatsapp, FaArrowDown } from 'react-icons/fa';
 import { Link } from 'react-scroll';
-import { ThemeContext } from '../contexts/ThemeContext';
-import { LanguageContext } from '../contexts/LanguageContext';
+import { useTranslation } from '../hooks/useTranslation';
 import '../Styles/Hero.css';
 
 const Hero = () => {
-    const { theme } = useContext(ThemeContext);
-    const { texts } = useContext(LanguageContext);
+    const { t } = useTranslation();
 
     useEffect(() => {
         // Animation de l'émoji
@@ -39,26 +36,26 @@ const Hero = () => {
             <div className="container">
                 <div className="hero-content">
                     <h1 className="hero-title">
-                        CREA
+                        {t('hero.title').split('')[0]}
                         <div className="hero-emoji">
                             <span role="img" aria-label="waving">
                                 🤓
                             </span>
                         </div>
-                        <span className="highlight">TIF</span>
+                        <span className="highlight">{t('hero.title').substring(1)}</span>
                     </h1>
                     <h2 className="hero-subtitle">
-                        {texts.developerTitle}
+                        {t('hero.developerTitle')}
                     </h2>
                     <p className="hero-text">
-                        {texts.passion}
+                        {t('hero.passion')}
                         <br />
-                        <span className="hero-accent">JavaScript | React | Java | UX/UI</span>
+                        <span className="hero-accent">{t('hero.stack')}</span>
                     </p>
 
                     <div className="hero-buttons">
                         <div className="hero-main-actions">
-                            <a href="/CV.pdf" className="cv-link" download aria-label={texts.downloadCV}>
+                            <a href="/CV.pdf" className="cv-link" download aria-label={t('hero.downloadCV')}>
                                 <div className="cv-circle">
                                     <span className="cv-text">CV</span>
                                 </div>
@@ -85,10 +82,10 @@ const Hero = () => {
                             smooth={true}
                             duration={800}
                             className="scroll-down-link"
-                            aria-label={texts.viewProjects}
+                            aria-label={t('hero.viewProjects')}
                         >
                             <div className="scroll-down">
-                                <span>{texts.viewProjects}</span>
+                                <span>{t('hero.viewProjects')}</span>
                                 <FaArrowDown className="scroll-icon" />
                             </div>
                         </Link>

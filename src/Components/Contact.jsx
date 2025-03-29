@@ -1,9 +1,11 @@
 import React, { useState, useRef } from 'react';
 import { FaLinkedin, FaGithub, FaEnvelope, FaWhatsapp } from 'react-icons/fa';
 import emailjs from '@emailjs/browser';
+import { useTranslation } from '../hooks/useTranslation';
 import '../Styles/Contact.css';
 
 const Contact = () => {
+    const { t } = useTranslation();
     const form = useRef();
     const [formData, setFormData] = useState({ name: '', email: '', message: '' });
     const [formErrors, setFormErrors] = useState({});
@@ -17,10 +19,10 @@ const Contact = () => {
 
     const validateForm = () => {
         const errors = {};
-        if (!formData.name) errors.name = 'Nom requis';
-        if (!formData.email) errors.email = 'Email requis';
-        if (!/\S+@\S+\.\S+/.test(formData.email)) errors.email = 'Email invalide';
-        if (!formData.message) errors.message = 'Message requis';
+        if (!formData.name) errors.name = t('contact.nameRequired');
+        if (!formData.email) errors.email = t('contact.emailRequired');
+        if (!/\S+@\S+\.\S+/.test(formData.email)) errors.email = t('contact.emailInvalid');
+        if (!formData.message) errors.message = t('contact.messageRequired');
         return errors;
     };
 
@@ -32,7 +34,6 @@ const Contact = () => {
             setIsSubmitting(true);
             setSubmitStatus('pending');
 
-            // dashboard.emailjs.com de EmailJS
             emailjs.sendForm(
                 'service_n3hlcr8',
                 'template_r98h0nn',
@@ -60,18 +61,18 @@ const Contact = () => {
     return (
         <section id="contact" className="contact-section">
             <div className="container">
-                <h2 className="contact-heading">Contactez-moi</h2>
+                <h2 className="contact-heading">{t('contact.title')}</h2>
                 <div className="row">
                     <div className="col-md-6">
                         <form className="contact-form" ref={form} onSubmit={handleSubmit}>
                             <div className="form-group">
-                                <label htmlFor="name">Nom</label>
+                                <label htmlFor="name">{t('contact.name')}</label>
                                 <input
                                     type="text"
                                     id="name"
-                                    name="name" // Important pour EmailJS
+                                    name="name"
                                     className="form-control"
-                                    placeholder="Votre nom"
+                                    placeholder={t('contact.namePlaceholder')}
                                     value={formData.name}
                                     onChange={handleChange}
                                     required
@@ -79,13 +80,13 @@ const Contact = () => {
                                 {formErrors.name && <p className="error-text">{formErrors.name}</p>}
                             </div>
                             <div className="form-group">
-                                <label htmlFor="email">Email</label>
+                                <label htmlFor="email">{t('contact.email')}</label>
                                 <input
                                     type="email"
                                     id="email"
-                                    name="email" // Important pour EmailJS
+                                    name="email"
                                     className="form-control"
-                                    placeholder="Votre email"
+                                    placeholder={t('contact.emailPlaceholder')}
                                     value={formData.email}
                                     onChange={handleChange}
                                     required
@@ -93,13 +94,13 @@ const Contact = () => {
                                 {formErrors.email && <p className="error-text">{formErrors.email}</p>}
                             </div>
                             <div className="form-group">
-                                <label htmlFor="message">Message</label>
+                                <label htmlFor="message">{t('contact.message')}</label>
                                 <textarea
                                     id="message"
-                                    name="message" // Important pour EmailJS
+                                    name="message"
                                     className="form-control"
                                     rows="5"
-                                    placeholder="Votre message"
+                                    placeholder={t('contact.messagePlaceholder')}
                                     value={formData.message}
                                     onChange={handleChange}
                                     required
@@ -111,23 +112,23 @@ const Contact = () => {
                                 className="btn btn-primary"
                                 disabled={isSubmitting}
                             >
-                                {isSubmitting ? 'Envoi en cours...' : 'Envoyer'}
+                                {isSubmitting ? t('contact.sending') : t('contact.send')}
                             </button>
                             {submitStatus === 'success' && (
                                 <div className="alert alert-success mt-3">
-                                    Message envoyé avec succès! Je vous répondrai dès que possible.
+                                    {t('contact.successMessage')}
                                 </div>
                             )}
                             {submitStatus === 'error' && (
                                 <div className="alert alert-danger mt-3">
-                                    Une erreur s'est produite. Veuillez réessayer ou me contacter directement par email.
+                                    {t('contact.errorMessage')}
                                 </div>
                             )}
                         </form>
                     </div>
                     <div className="col-md-6">
                         <div className="contact-info">
-                            <h3>Réseaux sociaux</h3>
+                            <h3>{t('contact.socialNetworks')}</h3>
                             <div className="social-links">
                                 <a href="https://linkedin.com/in/landry-tido-atikeng" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                                     <FaLinkedin className="social-icon" />
@@ -142,8 +143,8 @@ const Contact = () => {
                                     <FaWhatsapp className="social-icon" />
                                 </a>
                             </div>
-                            <h3>Téléchargement du CV</h3>
-                            <a href="CV.pdf" className="btn btn-secondary" download aria-label="Télécharger CV">Télécharger CV</a>
+                            <h3>{t('contact.cvDownload')}</h3>
+                            <a href="CV.pdf" className="btn btn-secondary" download aria-label="Télécharger CV">{t('hero.downloadCV')}</a>
                         </div>
                     </div>
                 </div>

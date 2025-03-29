@@ -1,0 +1,139 @@
+{
+    "navbar": {
+        "home": "Accueil",
+        "about": "À propos",
+        "projects": "Projets",
+        "contact": "Contact"
+    },
+    "hero": {
+        "title": "CRÉATIF",
+        "developerTitle": "DÉVELOPPEUR WEB",
+        "passion": "Passionné par la création d'applications web modernes et réactives.",
+        "stack": "JavaScript | React | Java | UX/UI",
+        "viewProjects": "Voir mes projets",
+        "downloadCV": "Télécharger CV"
+    },
+    "about": {
+        "title": "À Propos",
+        "description": "Je suis un étudiant en dernière année de bachelier en informatique de gestion, passionné par le développement d'applications web et mobiles. Mon parcours académique m'a permis de développer des compétences solides en programmation, en analyse de données et en gestion de projets. J'aime relever des défis techniques et concevoir des solutions innovantes, notamment en utilisant des technologies modernes.",
+        "career": "Parcours",
+        "education": "2022 - 2025 : Bachelier en informatique de gestion à [nom de ton université]",
+        "experience": "Stage en développement d'applications web, où j'ai pu travailler avec des technologies comme Java, JavaScript et React.",
+        "projects": "Participation à divers projets universitaires, incluant la création de sites web et d'applications mobiles pour des clients fictifs.",
+        "interests": "Centres d'intérêt",
+        "interestsList": [
+            "Passionné par les technologies émergentes comme l'intelligence artificielle et le machine learning.",
+            "Intérêt pour la musique, en particulier la guitare classique.",
+            "Exploration des applications pratiques de l'informatique dans des domaines variés.",
+            "Passionné par les jeux vidéo, notamment les jeux qui intègrent des éléments d'innovation technologique."
+        ]
+    },
+    "skills": {
+        "title": "Compétences",
+        "html": "HTML5",
+        "css": "CSS3",
+        "java": "Java",
+        "react": "React",
+        "git": "Git",
+        "database": "Bases de données",
+        "ai": "I A",
+        "others": "Autres"
+    },
+    "projects": {
+        "title": "Mes Projets",
+        "viewProject": "Voir le projet",
+        "moreDetails": "Plus de détails",
+        "close": "Fermer",
+        "viewSite": "Voir le site",
+        "sourceCode": "Code source",
+        "projectsList": [
+            {
+                "id": 1,
+                "title": "E-commerce Modern",
+                "description": "Une plateforme e-commerce avec une interface utilisateur moderne et intuitive. Notre solution offre une expérience d'achat fluide et personnalisée pour les clients.",
+                "tags": [
+                    "React",
+                    "Node.js",
+                    "MongoDB"
+                ],
+                "link": "https://example.com/ecommerce",
+                "github": "https://github.com/Landrytido/ecommerce-project"
+            },
+            {
+                "id": 2,
+                "title": "Application Mobile",
+                "description": "Application mobile de suivi de fitness avec des fonctionnalités avancées de tracking et d'analyse des performances personnelles.",
+                "tags": [
+                    "React Native",
+                    "Firebase"
+                ],
+                "link": "https://example.com/fitness-app",
+                "github": "https://github.com/Landrytido/fitness-app"
+            },
+            {
+                "id": 3,
+                "title": "Dashboard Analytics",
+                "description": "Tableau de bord analytique pour entreprises permettant de visualiser et d'analyser les données importantes en temps réel.",
+                "tags": [
+                    "Vue.js",
+                    "D3.js",
+                    "AWS"
+                ],
+                "link": "https://example.com/dashboard",
+                "github": "https://github.com/Landrytido/analytics-dashboard"
+            },
+            {
+                "id": 4,
+                "title": "Portfolio Créatif",
+                "description": "Site web portfolio moderne mettant en valeur les projets et réalisations avec des animations fluides et une navigation intuitive.",
+                "tags": [
+                    "React",
+                    "Three.js",
+                    "GSAP"
+                ],
+                "link": "https://example.com/portfolio",
+                "github": "https://github.com/Landrytido/portfolio"
+            },
+            {
+                "id": 5,
+                "title": "Application de Réservation",
+                "description": "Système de réservation en ligne pour restaurants avec gestion des tables et des commandes en temps réel.",
+                "tags": [
+                    "Next.js",
+                    "PostgreSQL",
+                    "Stripe"
+                ],
+                "link": "https://example.com/booking",
+                "github": "https://github.com/Landrytido/booking-app"
+            }
+        ]
+    },
+    "contact": {
+        "title": "Contactez-moi",
+        "name": "Nom",
+        "namePlaceholder": "Votre nom",
+        "nameRequired": "Nom requis",
+        "email": "Email",
+        "emailPlaceholder": "Votre email",
+        "emailRequired": "Email requis",
+        "emailInvalid": "Email invalide",
+        "message": "Message",
+        "messagePlaceholder": "Votre message",
+        "messageRequired": "Message requis",
+        "send": "Envoyer",
+        "sending": "Envoi en cours...",
+        "successMessage": "Message envoyé avec succès! Je vous répondrai dès que possible.",
+        "errorMessage": "Une erreur s'est produite. Veuillez réessayer ou me contacter directement par email.",
+        "socialNetworks": "Réseaux sociaux",
+        "cvDownload": "Téléchargement du CV"
+    },
+    "footer": {
+        "contact": "Contact",
+        "location": "Bruxelles, Belgique",
+        "followMe": "Suivez-moi",
+        "copyright": "© 2025 Landry Tido. Tous droits réservés."
+    },
+    "loading": {
+        "title": "CRÉATIF"
+    }
+}

@@ -1,24 +1,25 @@
-// src/contexts/LanguageContext.js
 import React, { createContext, useState, useEffect } from "react";
-import { translations } from "../translations"; // Nous allons créer ce fichier
+import frTranslations from "../translations/fr.json";
+import enTranslations from "../translations/en.json";
 
 export const LanguageContext = createContext();
 
+const translations = {
+  fr: frTranslations,
+  en: enTranslations,
+};
+
 export const LanguageProvider = ({ children }) => {
-  // Vérifier la langue stockée ou détecter la langue du navigateur
   const getInitialLanguage = () => {
     const storedLanguage = localStorage.getItem("language");
     if (storedLanguage) return storedLanguage;
-
-    // Détection automatique basée sur la langue du navigateur
     const browserLanguage = navigator.language.split("-")[0];
-    return browserLanguage === "fr" ? "fr" : "en"; // Par défaut en anglais si ce n'est pas français
+    return browserLanguage === "fr" ? "fr" : "en";
   };
 
   const [language, setLanguage] = useState(getInitialLanguage);
   const [texts, setTexts] = useState(translations[getInitialLanguage()]);
 
-  // Fonction pour changer de langue
   const switchLanguage = (newLanguage) => {
     setLanguage(newLanguage);
     setTexts(translations[newLanguage]);
@@ -26,7 +27,6 @@ export const LanguageProvider = ({ children }) => {
     document.documentElement.setAttribute("lang", newLanguage);
   };
 
-  // Mettre à jour l'attribut lang au chargement
   useEffect(() => {
     document.documentElement.setAttribute("lang", language);
   }, [language]);
